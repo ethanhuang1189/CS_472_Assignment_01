@@ -1,4 +1,4 @@
-1.
+Part 1: Problem-Solution Mapping Table
 
 | Problem | Solution Proposed by Paper | How We See This Today |
 |---------|----------------------------|-----------------------|
@@ -8,3 +8,19 @@
 | Network Performance At Scale | I think this issue wasn't fully addressed because it would've been impossible to think about how widespread computers would become.  People each having multiple different divices.  Their solutions were focues on 1 on 1 communication and not when many devices are communication to each other | We can see this today in multiplayer videogames when lobbies can hold many people all needing to send their location, health, and other data, and everyone in the game would need to have all the data as well |
 | Security\Authentication | They didn't really mention anything on security as it was primarily focused connecting networks.  It would make sense as security would only come up as a problem if connecting different networks becomes mainstream | We can see this today with digital certificates like HTTPS |
 | Process to Process Communication | The solution is to use ports to allow different computers to establish connections | We see this today on apps like Discord where hundreds of messages are being sent to different people even when they are on different networks |
+
+
+Part 2: AI-Assisted Investiation
+
+A. Investigation overview
+I picked Row 4 Network Performance at Scale and specifically I ended up investigating how multiplayer games are able to transfer all that data between servers and all the players.  I wanted to learn how they are able to keep up with accurate data, like who shot first, and how they deal with out of sync packets.
+
+B. Key Questions You Asked
+"I can watch a 4K video on YouTube with millions of other people. How does this work when the 1974 paper's routing was designed for much smaller networks?"
+"Could you further explain border gateway protocol and how it relates back"
+"relating it back to network performance at scale, can you explain how it works with multiplayer video games were there could be hundreds of people playing together?"
+"So what would happen if the authoritative game server can't keep up with the demand? Packet loss? Do servers do anything to try preventing that?"
+"The idea that more real time packets are more important than guaranteed delivery is very interesting.  What would happen is some of the players started becoming out of sync whether through out of date packets or not"
+"How does this relate to what Cerf-Kahn proposed?"
+
+C. Connection to the 1974 Paper
