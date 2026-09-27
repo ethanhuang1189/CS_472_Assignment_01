@@ -33,7 +33,7 @@ The biggest surprise was learning that multiplayer games don't really need to re
 
 ## E. AI Conversation Documentation
 
-**ME: **I can watch a 4K video on YouTube with millions of other people. How does this work when the 1974 paper's routing was designed for much smaller networks?
+**ME: ** I can watch a 4K video on YouTube with millions of other people. How does this work when the 1974 paper's routing was designed for much smaller networks?
 
 ****AI: ****The key is that today’s Internet still uses the fundamental ideas in Cerf and Kahn’s 1974 paper, but it has added scalable routing, much faster infrastructure, and content delivery networks (CDNs). When millions of people watch a 4K YouTube video, they generally aren't receiving it from one central server. They receive copies distributed across many servers, often geographically close to them.
 There are two separate scaling problems here: routing packets across billions of devices and delivering enormous amounts of video data to millions of viewers.
@@ -404,7 +404,7 @@ Cerf and Kahn's architecture enables communication between networks without requ
 The key difference between YouTube and multiplayer gaming is how the traffic scales. YouTube can distribute copies of existing video across thousands of caching servers. A multiplayer game must continually combine fresh information from its players into a shared state, then distribute relevant updates within tight latency constraints.
 The Internet provides the connectivity; the game's networking architecture makes that connectivity feel like a single, shared world.
 
-**ME: **So what would happen if the authoritative game server can't keep up with the demand? Packet loss? Do servers do anything to try preventing that?
+**ME: ** So what would happen if the authoritative game server can't keep up with the demand? Packet loss? Do servers do anything to try preventing that?
 
 **AI: **Yes. If an authoritative game server cannot keep up with hundreds of players, packet loss is one possible consequence, but the first symptom is often increased latency, even when no packets are being lost. The server might receive every player's inputs successfully but take too long to process them.
 Modern multiplayer games use several techniques to prevent this, including limiting how much work the server performs, prioritizing important updates, adjusting update rates and distributing workloads across multiple machines.
