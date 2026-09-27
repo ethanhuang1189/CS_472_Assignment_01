@@ -877,4 +877,5 @@ The central insight is that multiplayer games don't abandon Cerf and Kahn's prin
 A file transfer must recover every missing byte. A multiplayer game often needs the newest possible information about the shared world. By placing these decisions at the endpoints instead of requiring the underlying network to understand the application, the Internet can support both kinds of communication using the same basic architecture.
 
 
-# Part 3:
+# Part 3: Reflection
+The problem from the paper I found most interesting was packet loss and retransmission because I didn't know that recovering lock packets isn't always beneficial.  After that AI investigation I learned a lot about how packets work with video games, specifically how they prioritize new packets over older lost packets.  I also learned how games use authoritative servers, client-side prediction, and synchronization technology to keep hundreds of players interacting in real time, many things that weren't brought up in the paper.  This process changed my understand of how the internet works by showing me the inner works of how packets move between computers and the beginnings of them which revolutionized the networks and computers.  Before this the only times I thought about packets and how they worked were when I had packet loss in video games.
