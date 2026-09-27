@@ -33,9 +33,9 @@ The biggest surprise was learning that multiplayer games don't really need to re
 
 ## E. AI Conversation Documentation
 
-**ME: ** I can watch a 4K video on YouTube with millions of other people. How does this work when the 1974 paper's routing was designed for much smaller networks?
+ME:  I can watch a 4K video on YouTube with millions of other people. How does this work when the 1974 paper's routing was designed for much smaller networks?
 
-****AI: ****The key is that today’s Internet still uses the fundamental ideas in Cerf and Kahn’s 1974 paper, but it has added scalable routing, much faster infrastructure, and content delivery networks (CDNs). When millions of people watch a 4K YouTube video, they generally aren't receiving it from one central server. They receive copies distributed across many servers, often geographically close to them.
+AI: The key is that today’s Internet still uses the fundamental ideas in Cerf and Kahn’s 1974 paper, but it has added scalable routing, much faster infrastructure, and content delivery networks (CDNs). When millions of people watch a 4K YouTube video, they generally aren't receiving it from one central server. They receive copies distributed across many servers, often geographically close to them.
 There are two separate scaling problems here: routing packets across billions of devices and delivering enormous amounts of video data to millions of viewers.
 1. What the 1974 paper got right
 In A Protocol for Packet Network Intercommunication, Cerf and Kahn describe how independent packet-switched networks can communicate through gateways.
@@ -152,9 +152,9 @@ The 1974 paper anticipated the need for independent networks and packet fragment
 The important distinction is that the Internet's architecture scales by distributing responsibility. BGP helps networks discover routes to one another, local routing handles individual networks, CDNs move popular content nearer to users, and adaptive streaming adjusts delivery to each viewer's connection.
 That combination—not a single giant router or a single server transmitting to everyone—is what makes millions of simultaneous 4K streams possible.
 
-**ME: **Could you further explain border gateway protocol and how it relates back
+ME: Could you further explain border gateway protocol and how it relates back
 
-**AI: **BGP (Border Gateway Protocol) is one of the major developments that allowed Cerf and Kahn's 1974 idea of connecting independent networks to scale into today's global Internet. Their paper explains how gateways should forward packets between networks, but largely leaves open the question of how those gateways discover which paths to use. BGP addresses that question at the level of independently administered networks.
+AI: BGP (Border Gateway Protocol) is one of the major developments that allowed Cerf and Kahn's 1974 idea of connecting independent networks to scale into today's global Internet. Their paper explains how gateways should forward packets between networks, but largely leaves open the question of how those gateways discover which paths to use. BGP addresses that question at the level of independently administered networks.
 The important distinction is that BGP does not carry your YouTube video or individually route its packets. Instead, it distributes routing information that helps routers decide where those packets should go.
 1. The routing problem in the 1974 paper
 On page 2, Cerf and Kahn introduce three networks, A, B and C, interconnected by two gateways, M and N. A packet traveling from A to C passes through both gateways.
@@ -234,9 +234,9 @@ The central connection: Cerf and Kahn described an architecture in which indepen
 For further technical detail, the formal specifications are RFC 4271 (BGP-4)
  and RFC 4632 (CIDR and route aggregation)
 
-**ME: **relating it back to network performance at scale, can you explain how it works with multiplayer video games were there could be hundreds of people playing together?
+ME: relating it back to network performance at scale, can you explain how it works with multiplayer video games were there could be hundreds of people playing together?
 
-**AI: **Multiplayer games are an especially interesting example of how the Internet has scaled beyond the networks Cerf and Kahn envisioned in 1974. Unlike YouTube, where a server primarily sends video to viewers, a multiplayer game has to receive information from hundreds of players, process their actions, and send updated game information back to them in near real time.
+AI: Multiplayer games are an especially interesting example of how the Internet has scaled beyond the networks Cerf and Kahn envisioned in 1974. Unlike YouTube, where a server primarily sends video to viewers, a multiplayer game has to receive information from hundreds of players, process their actions, and send updated game information back to them in near real time.
 The underlying Internet architecture is largely the same, but the performance requirements are very different. Routing, latency, server architecture, and the amount of information exchanged all become important.
 1. How 100 players can share the same game
 Imagine a battle royale game with 100 players. Each player needs to know where the others are, who's shooting, and what's happening in the environment.
@@ -404,9 +404,9 @@ Cerf and Kahn's architecture enables communication between networks without requ
 The key difference between YouTube and multiplayer gaming is how the traffic scales. YouTube can distribute copies of existing video across thousands of caching servers. A multiplayer game must continually combine fresh information from its players into a shared state, then distribute relevant updates within tight latency constraints.
 The Internet provides the connectivity; the game's networking architecture makes that connectivity feel like a single, shared world.
 
-**ME: ** So what would happen if the authoritative game server can't keep up with the demand? Packet loss? Do servers do anything to try preventing that?
+ME:  So what would happen if the authoritative game server can't keep up with the demand? Packet loss? Do servers do anything to try preventing that?
 
-**AI: **Yes. If an authoritative game server cannot keep up with hundreds of players, packet loss is one possible consequence, but the first symptom is often increased latency, even when no packets are being lost. The server might receive every player's inputs successfully but take too long to process them.
+AI: Yes. If an authoritative game server cannot keep up with hundreds of players, packet loss is one possible consequence, but the first symptom is often increased latency, even when no packets are being lost. The server might receive every player's inputs successfully but take too long to process them.
 Modern multiplayer games use several techniques to prevent this, including limiting how much work the server performs, prioritizing important updates, adjusting update rates and distributing workloads across multiple machines.
 The interesting connection to Cerf and Kahn's 1974 paper is that they anticipated the problem of limited processing and buffering resources, although modern games require additional application-level solutions.
 1. What happens when a server gets overloaded?
@@ -539,9 +539,9 @@ But multiplayer games introduce an additional requirement: freshness can be more
 The original paper emphasizes reliable, ordered communication between processes. Modern real-time games often use UDP and build application-specific mechanisms that selectively provide reliability, prioritize current information and tolerate some loss.
 That distinction explains why an overloaded game server may deliberately discard obsolete updates rather than attempt to retransmit everything. The goal is to keep all players experiencing a sufficiently consistent version of the same game world without letting stale information accumulate.
 
-**ME: **The idea that more real time packets are more important than guaranteed delivery is very interesting.  What would happen is some of the players started becoming out of sync whether through out of date packets or not
+ME: The idea that more real time packets are more important than guaranteed delivery is very interesting.  What would happen is some of the players started becoming out of sync whether through out of date packets or not
 
-**AI: **This is one of the most interesting problems in multiplayer game networking: what happens when two players see different versions of the same game world?
+AI: This is one of the most interesting problems in multiplayer game networking: what happens when two players see different versions of the same game world?
 Imagine you're playing a first-person shooter. You run behind a wall, but another player shoots you just before you reach cover. On your screen, you're already safely behind the wall. On their screen, you were still running toward it.
 Both players may have acted correctly based on what they saw. The problem is that their computers were showing different versions of the game at slightly different times.
 Games use several mechanisms to manage this, including client-side prediction, server reconciliation, interpolation and lag compensation. They don't completely eliminate disagreement, but they make multiplayer games playable despite network delays.
@@ -664,9 +664,9 @@ For example, if a game client receives positions from ticks 100, 101, 104 and 10
 This is the fundamental trade-off in real-time multiplayer networking: consistency versus responsiveness. Games try to make the local experience immediately responsive while preserving an authoritative shared world. Prediction and interpolation hide short-term network imperfections; reconciliation and reliable delivery of important events restore consistency when needed.
 As a result, players are often temporarily seeing slightly different versions of the same world. The engineering challenge is keeping those differences small enough that the game remains playable and fair.
 
-**ME: **Could you give me a game that does this really well compared to a game that doesn't or didn't?
+ME: Could you give me a game that does this really well compared to a game that doesn't or didn't?
 
-**AI: **Two games make an interesting comparison: VALORANT and Battlefield 4 at its 2013 launch. Both use authoritative servers, but their developers have documented very different experiences with synchronization, server performance and hit registration.
+AI: Two games make an interesting comparison: VALORANT and Battlefield 4 at its 2013 launch. Both use authoritative servers, but their developers have documented very different experiences with synchronization, server performance and hit registration.
 VALORANT is an example of a game engineered around minimizing synchronization errors from the outset. Battlefield 4's early networking problems show what players experience when latency compensation, update frequency and server performance aren't working together effectively.
 
 
@@ -788,9 +788,9 @@ VALORANT's architecture emphasizes keeping simulation steps consistent and corre
 Neither approach can eliminate network delay or packet loss. Both must decide which information to predict, which to retransmit and which can safely be replaced by newer information.
 This brings us directly back to Cerf and Kahn's 1974 paper. Their sequencing and retransmission mechanisms let endpoints recognize missing information and recover it. Modern multiplayer games extend that basic idea with an additional question: does recovering this particular piece of information still matter, or has a newer game state made it obsolete?
 
-**ME: **How does this relate to what Cerf-Kahn proposed?
+ME: How does this relate to what Cerf-Kahn proposed?
 
-**AI: **The connection is that Cerf and Kahn's 1974 paper established how computers could communicate reliably across different packet-switched networks, while modern multiplayer games adapt those principles to situations where delivering information quickly can matter more than delivering every packet.
+AI: The connection is that Cerf and Kahn's 1974 paper established how computers could communicate reliably across different packet-switched networks, while modern multiplayer games adapt those principles to situations where delivering information quickly can matter more than delivering every packet.
 VALORANT and Battlefield 4 illustrate different ways of building on that original architecture. There are four particularly important connections to your paper.
 1. Packet loss and retransmission: when should missing data be recovered?
 In the section Retransmission and Duplicate Detection (page 7), Cerf and Kahn recognize that packet transmission cannot be perfectly reliable. They propose using sequence numbers, positive acknowledgments and timeouts to detect missing data and retransmit it. cerf74.pdf
