@@ -1,4 +1,4 @@
-#Part 1: Problem-Solution Mapping Table
+# Part 1: Problem-Solution Mapping Table
 
 | Problem | Solution Proposed by Paper | How We See This Today |
 |---------|----------------------------|-----------------------|
@@ -12,10 +12,10 @@
 
 # Part 2: AI-Assisted Investiation
 
-A. Investigation overview
+## A. Investigation overview
 I picked Row 4 Network Performance at Scale and specifically I ended up investigating how multiplayer games are able to transfer all that data between servers and all the players.  I wanted to learn how they are able to keep up with accurate data, like who shot first, and how they deal with out of sync packets.
 
-B. Key Questions You Asked
+## B. Key Questions You Asked
 "I can watch a 4K video on YouTube with millions of other people. How does this work when the 1974 paper's routing was designed for much smaller networks?"
 "Could you further explain border gateway protocol and how it relates back"
 "relating it back to network performance at scale, can you explain how it works with multiplayer video games were there could be hundreds of people playing together?"
@@ -23,15 +23,15 @@ B. Key Questions You Asked
 "The idea that more real time packets are more important than guaranteed delivery is very interesting.  What would happen is some of the players started becoming out of sync whether through out of date packets or not"
 "How does this relate to what Cerf-Kahn proposed?"
 
-C. Connection to the 1974 Paper
+## C. Connection to the 1974 Paper
 Things like gateways, windows, and resending lost packets are still used today.  The biggest difference between the communication explained in the paper verses modern multiplayer games is how the priority works.  Video games today prioritize sending new information over recovering or resending old data, this is because in real time games prioritizing old data can lead to more problems with syncing everyones games.
 
 As the internet grew, more problems started to appear that the original paper didn't anticipate.  Things like BGP or border gateway protocol were created to help manage different networks.  The original paper mentioned data traveling through 3 different networks from A to B to C, but modern day networks have data traveling through many more different networks by letting internet providers to exchange routing information.  Things like lag reduction and sync technologies weren't even thought of in the original paper and are common place now in games like VALORANT using prediction technology to correct differences between players.
 
-D. Suprise Findings
+## D. Suprise Findings
 The biggest surprise was learning that multiplayer games don't really need to recover lost packets for the most part.  In the paper it seemed important to recover lost data through windows and communication between the sender and receiver on what packets were transfered, but in games resending lost packets could be more problematic then just skipping the resending part and receiving and using the newer data.  A good example that helped me was player locations, if there is packet loss at some point and the server loses track of where the player is, it's usually more helpful to get their newer location than to find and recover their old position from when the packet was lost.  This shows a slight change in priority from a priority in recovering lost data to speed.
 
-E. AI Conversation Documentation
+## E. AI Conversation Documentation
 
 ME: I can watch a 4K video on YouTube with millions of other people. How does this work when the 1974 paper's routing was designed for much smaller networks?
 
